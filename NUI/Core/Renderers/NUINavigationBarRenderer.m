@@ -56,6 +56,9 @@
         [bar setBackgroundImage:gradientImage forBarMetrics:UIBarMetricsDefault];
     } else if ([NUISettings hasProperty:@"background-color" withClass:className]) {
         CGRect frame = bar.bounds;
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0) {
+            frame.size.height = 64;
+        }
         UIImage *colorImage = [NUIGraphics colorImage:[NUISettings getColor:@"background-color" withClass:className] withFrame:frame];
         [bar setBackgroundImage:colorImage forBarMetrics:UIBarMetricsDefault];
     }
